@@ -126,8 +126,119 @@ add({b:5}) // 传入参数
 
 ## 第二章 问答题项目
 
+#### 1. 注意事项
+
 - 新建`.dart`文件，字母全部小写，单词之间使用`_`进行隔开
+
 - 类名单词开头字母大写，每个单词之间不隔开
+  
   - 每个类都有一个对应名称的对象，并为它提供`key`值
   
   - 同时拥有`Widget build(){}`函数，返回对应的组件
+  
+  - 有状态组件命名【这两个类都需要在方法函数前添加`@override`标识】
+    
+    - 原本类命名`xxx extends StatefulWidget`，原本类添加方法`State<XXX> createState(){ return _XXXState(); }`，添加`key`关键字，`const xxx({super.key}); // 特别要记得加分号`
+    
+    - 状态组件命名`_XXXState extends State<XXX>`，同时添加`Widget build(){}`方法
+
+- 避免使用组件`Opacity()`，因为这个组件不必要使用，同时不适合构建中大型APP去使用
+
+- 创建类的时候会提供一个同名的类型
+
+#### 2. 概念
+
+- 条件渲染，动态切换渲染的组件，主要是通过在`setState`方法中，对绑定的状态组件进行切换，以此达到切换界面上的组件内容
+
+- 状态提升，由父类掌管状态，并将状态改变的方法传递给子类进行使用
+
+#### 3. 数据模型
+
+- 添加数据模型，一般那是在`lib/models`下进行添加，添加的是纯类，不需要继承其他的类，只需要表示好必要的数据类型
+
+例如：
+
+```dart
+class QuizQuestion {
+  const QuizQuestion(this.text,this.answers);
+
+  final String text;
+  final List<String> answers;
+}
+```
+
+- 添加静态数据，一般是在`lib/data`中进行添加，添加静态对象。
+
+例如：
+
+```dart
+import '../models/quiz_question.dart';
+
+const questions = [
+  QuizQuestion(
+    'What are the main building blocks of Flutter UIs?',
+    [
+      'Widgets',
+      'Components',
+      'Blocks',
+      'Functions',
+    ],
+  ),  // ...
+```
+
+- 添加数据模型方法
+
+```dart
+List<String> getShuffledAnswers() {
+    final shuffleList = List.of(answers);
+    shuffleList.shuffle();
+    return shuffleList;
+  }
+```
+
+
+
+#### 4. 数组方法
+
+- `map`，不会改变原始数组，但会返回一个新数组，示例：`currentQuestion.answers.map((answer){  
+    return AnswerButton(onTap: (){},answerText: answer,);  
+  }),`
+  
+  - 在组件代码中使用时，要对其进行解构`...<List>`
+
+- `shuffle`，对现有的数组进行顺序打乱
+
+- `List.of(<List>)`，复制一个数组并返回
+
+- `where`，不改变原始数组，返回一个新的数组
+
+
+
+#### 5.  其他
+
+- 引入外部字体，在`pub.dev`中引入`google`字体，参考API
+
+- 对`for`函数的应用
+  
+  - 设置`map`类型，定义`List<Map<String,object>>`类型，为该数据赋值，同时使用`for`函数
+  
+  如下：
+  
+  ```dart
+  List<Map<String, Object>> getSummaryData() {
+      final List<Map<String, Object>> summary = [];
+  
+      for (var i = 0; i < chosenAnswers.length; i++) {
+        summary.add({
+          'question_index':i+1,
+          'question':questions[i].text,
+          'question_answer':questions[i].answers[0],
+          'question_chosen':chosenAnswers[i],
+        });
+      }
+  
+      return summary;
+    }
+  ```
+
+- `SingleChildScrollView`，滚动视窗，由上级组件决定宽度大小
