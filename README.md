@@ -240,3 +240,17 @@ List<String> getShuffledAnswers() {
 - `SingleChildScrollView`，滚动视窗，由上级组件决定宽度大小
 
 - `get xxx{... return xxx}`函数，能够在调用函数的时候，直接通过输入`xxx`来获得函数结果
+
+---
+
+## 第三章 修复BUG
+
+#### 1. 总结
+
+- 学会使用`Debug`，排查错误，检查出错误的位置
+
+- 学会使用浏览器上的开发者工具，分析APP运行的情况
+
+---
+
+## 第四章 进阶项目
