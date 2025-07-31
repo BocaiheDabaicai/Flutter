@@ -32,11 +32,11 @@ class _QuizState extends State<Quiz> {
     });
   }*/
   List<String> selectedAnswers = []; // 保存所选择的答案
-  var activeScreen = 'start-screen';
+  var _activeScreen = 'start-screen';
 
   void switchScreen() {
     setState(() {
-      activeScreen = 'questions-screen';
+      _activeScreen = 'questions-screen';
     });
   }
 
@@ -46,27 +46,34 @@ class _QuizState extends State<Quiz> {
     if (selectedAnswers.length == questions.length) {
       setState(() {
         // selectedAnswers = [];
-        activeScreen = 'results-screen';
+        _activeScreen = 'results-screen';
       });
     }
+  }
+
+  void restartQuiz(){
+    setState(() {
+      selectedAnswers = [];
+      _activeScreen = 'questions-screen';
+    });
   }
 
   @override
   Widget build(context) {
     // 相当于vue中存放计算方法
-    /*final screenWidget = activeScreen == 'start-screen'
+    /*final screenWidget = _activeScreen == 'start-screen'
         ? StartScreen(switchScreen)
         : QuestionScreen(onSelectAnswer: chooseAnswer);*/
 
     // If 方法演示
     Widget screenWidget = StartScreen(switchScreen);
 
-    if (activeScreen == 'start-screen') {
+    if (_activeScreen == 'questions-screen') {
       screenWidget = QuestionScreen(onSelectAnswer: chooseAnswer);
-    } else if(activeScreen == 'results-screen'){
-      screenWidget = ResultsScreen(chosenAnswers:selectedAnswers);
-    } else {
-      screenWidget = StartScreen(switchScreen);
+    }
+
+    if(_activeScreen == 'results-screen'){
+      screenWidget = ResultsScreen(chosenAnswers:selectedAnswers,onRestart: restartQuiz,);
     }
 
     return MaterialApp(

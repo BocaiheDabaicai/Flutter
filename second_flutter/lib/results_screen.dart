@@ -5,11 +5,12 @@ import 'package:second_flutter/question_summary.dart';
 import 'my_text.dart';
 
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen({super.key, required this.chosenAnswers});
+  const ResultsScreen({super.key, required this.chosenAnswers,required this.onRestart});
 
   final List<String> chosenAnswers;
+  final void Function() onRestart;
 
-  List<Map<String, Object>> getSummaryData() {
+  List<Map<String, Object>> get summaryData {
     final List<Map<String, Object>> summary = [];
 
     for (var i = 0; i < chosenAnswers.length; i++) {
@@ -26,11 +27,11 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(context) {
-    final summaryData = getSummaryData();
+    // final summaryData = getSummaryData();
     final numTotalQuestions = questions.length;
-    final numCorrectQuestions = summaryData.where((data) {
-      return data['question_answer'] == data['question_chosen'];
-    }).length;
+    final numCorrectQuestions = summaryData
+        .where((data) => data['question_answer'] == data['question_chosen'])
+        .length;
 
     return SizedBox(
       width: double.infinity, // 最大宽度
@@ -47,7 +48,7 @@ class ResultsScreen extends StatelessWidget {
             QuestionSummary(summaryData),
             SizedBox(height: 30),
             TextButton.icon(
-              onPressed: () {},
+              onPressed: onRestart,
               style: ButtonStyle(
                 padding: WidgetStateProperty.all(EdgeInsets.all(20)),
               ),

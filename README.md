@@ -196,8 +196,6 @@ List<String> getShuffledAnswers() {
   }
 ```
 
-
-
 #### 4. 数组方法
 
 - `map`，不会改变原始数组，但会返回一个新数组，示例：`currentQuestion.answers.map((answer){  
@@ -211,8 +209,6 @@ List<String> getShuffledAnswers() {
 - `List.of(<List>)`，复制一个数组并返回
 
 - `where`，不改变原始数组，返回一个新的数组
-
-
 
 #### 5.  其他
 
@@ -242,3 +238,5 @@ List<String> getShuffledAnswers() {
   ```
 
 - `SingleChildScrollView`，滚动视窗，由上级组件决定宽度大小
+
+- `get xxx{... return xxx}`函数，能够在调用函数的时候，直接通过输入`xxx`来获得函数结果
