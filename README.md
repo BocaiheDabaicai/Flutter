@@ -254,3 +254,21 @@ List<String> getShuffledAnswers() {
 ---
 
 ## 第四章 进阶项目
+
+#### 1. 补充
+
+| 数据类型     |     |
+| -------- | --- |
+| DateTime |     |
+
+- `uuid`依赖包，用于生成唯一的`id`信息
+
+- `intl`依赖包，用来生产符合当前格式的日期表达字符串
+
+- 自定义数据类型`enum`，对象型写法，里面放置自己设计的值，例如：
+
+```dart
+enum Category { food, travel, leisure, work }
+```
+
+- `ListView`组件，是一个包含自动滚动的列表组件，在不知道有多少行的情况下进行使用，否则就使用`Column`组件
