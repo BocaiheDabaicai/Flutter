@@ -260,6 +260,7 @@ List<String> getShuffledAnswers() {
 | 数据类型     |     |
 | -------- | --- |
 | DateTime |     |
+| Future   |     |
 
 - `uuid`依赖包，用于生成唯一的`id`信息
 
@@ -272,3 +273,5 @@ enum Category { food, travel, leisure, work }
 ```
 
 - `ListView`组件，是一个包含自动滚动的列表组件，在不知道有多少行的情况下进行使用，否则就使用`Column`组件
+- `TextEditingController`输入框控制器，直接获取输入内容，但是要记得在`_xxx`状态私有类中进行`dispose(){}`方法处理，以免程序崩溃
+- `showDatePicker`日历控制器，用于显示日历模态框
