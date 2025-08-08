@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fourth_flutter/widgets/expenses.dart';
 
 var kColorScheme = ColorScheme.fromSeed(
@@ -11,6 +12,14 @@ var kDarkColorScheme = ColorScheme.fromSeed(
 );
 
 void main() {
+  /*
+  // 锁定代码的转换方向
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((
+    fn,
+  ) {
+
+  });*/
+
   runApp(
     MaterialApp(
       darkTheme: ThemeData.dark().copyWith(
