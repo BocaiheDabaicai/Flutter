@@ -294,3 +294,5 @@ enum Category { food, travel, leisure, work }
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(( 
   fn,) { });
   ```
+
+- `scaffold`组件，默认的高度、宽度是覆盖整个屏幕

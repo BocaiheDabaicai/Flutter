@@ -31,6 +31,8 @@ class _Expenses extends State<Expenses> {
 
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
+      useSafeArea: true, // 安全模式，保证模态框内容在摄像头下面
+      isScrollControlled: true, // 在有限的空间下，实现对模态框的滚动效果
       context: context,
       builder: (ctx) => NewExpense(onAddExpense: _addExpense),
     );
@@ -83,12 +85,13 @@ class _Expenses extends State<Expenses> {
 
     return Scaffold(
       appBar: AppBar(
+        // centerTitle: false,
         title: Text('Flutter ExpensesTracker'),
         actions: [
           IconButton(onPressed: _openAddExpenseOverlay, icon: Icon(Icons.add)),
         ],
       ),
-      body: width < 600
+      body: width < 900
           ? Column(
               children: [
                 // Text('The chart'),
